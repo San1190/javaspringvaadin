@@ -11,6 +11,7 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.component.notification.Notification;
+import com.vaadin.flow.component.Key; //Import key
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,27 +22,22 @@ public class ListaCompraView extends VerticalLayout {
 
     private List<Articulo> listaArticulos = new ArrayList<>();
     private VerticalLayout listaArticulosLayout = new VerticalLayout();
+    private TextField articuloInput = new TextField("Nuevo Artículo"); //Made it a class member
 
     public ListaCompraView() {
         // Crear elementos de UI
-        TextField articuloInput = new TextField("Nuevo Artículo");
+
         Button agregarButton = new Button("Agregar");
 
         // Estilo
         setAlignItems(Alignment.CENTER);
         listaArticulosLayout.setWidth("400px");
 
-        // Agrega evento
-        agregarButton.addClickListener(event -> {
-            String nombreArticulo = articuloInput.getValue();
-            if (!nombreArticulo.isEmpty()) {
-                Articulo nuevoArticulo = new Articulo(nombreArticulo);
-                listaArticulos.add(nuevoArticulo);
-                actualizarListaArticulos();
-                articuloInput.clear();
+        // Agrega evento al button
+        agregarButton.addClickListener(event -> agregarArticulo());
 
-            }
-        });
+        // Agrega evento al TextField (Enter key)
+        articuloInput.addKeyDownListener(Key.ENTER, event -> agregarArticulo());
 
         //Organiza el layout horizontalmente
         HorizontalLayout anadirLayout = new HorizontalLayout(articuloInput, agregarButton);
@@ -49,6 +45,20 @@ public class ListaCompraView extends VerticalLayout {
 
         add(anadirLayout, listaArticulosLayout);
 
+        // Add enter click listener to the layout
+        articuloInput.addKeyDownListener(Key.ENTER, event -> agregarArticulo());
+    }
+
+    //Extract method
+    private void agregarArticulo() {
+        String nombreArticulo = articuloInput.getValue();
+        if (!nombreArticulo.isEmpty()) {
+            Articulo nuevoArticulo = new Articulo(nombreArticulo);
+            listaArticulos.add(nuevoArticulo);
+            actualizarListaArticulos();
+            articuloInput.clear();
+
+        }
     }
 
     private void actualizarListaArticulos() {
