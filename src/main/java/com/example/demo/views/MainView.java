@@ -1,6 +1,7 @@
 package com.example.demo.views;
 
 import com.vaadin.flow.component.button.Button;
+import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
@@ -15,6 +16,7 @@ public class MainView extends VerticalLayout {
         // Create components
         TextField textField = new TextField("Your Name"); // Label added
         Button button = new Button("Say Hello");
+        button.addThemeVariants(ButtonVariant.LUMO_PRIMARY); // Add a theme varia
 
         // Add a click listener to the button
         button.addClickListener(event -> {

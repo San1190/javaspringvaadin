@@ -16,6 +16,9 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.dom.Style;  // Import Style
 import com.vaadin.flow.component.dependency.CssImport; // Import CssImport
 import com.vaadin.flow.router.RouterLink;
+
+import javax.swing.ButtonModel;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Route("")
@@ -77,8 +80,16 @@ public class TaskView extends VerticalLayout {
                 )
         );
         goToMainButton.addThemeName("secondary"); // A less prominent theme
-        goToMainButton.getStyle().set("margin-top", "var(--lumo-space-l)");
+        goToMainButton.getStyle().set("margin-top", "var(--lumo-space-2)");
 
+        Button goToTikTakToeButton = new Button("Go to Tik Tak Toe");
+        goToTikTakToeButton.addClickListener(event ->
+                goToTikTakToeButton.getUI().ifPresent(ui ->
+                        ui.navigate("tresenraya") // Navigate to the "tresenraya" route
+                )
+        );
+        goToTikTakToeButton.addThemeName("secondary"); // A less prominent theme
+        goToTikTakToeButton.getStyle().set("margin-top", "var(--lumo-space-l)");
         // Layout using Div for a bit more structure
         Div content = new Div();
         content.setWidthFull(); // Make the content fill the available space
