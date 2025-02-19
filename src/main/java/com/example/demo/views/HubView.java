@@ -46,6 +46,24 @@ public class HubView extends VerticalLayout {
                 )
         );
 
+        Button goToListaCompraButton = new Button("Go to Lista de la Compra", event ->
+                event.getSource().getUI().ifPresent(ui ->
+                        ui.navigate("lista-compra") // Important: Route must match the @Route in ListaCompraView
+                )
+        );
+
+        Button goToCalculatorButton = new Button("Go to Calculator", event ->
+                event.getSource().getUI().ifPresent(ui ->
+                        ui.navigate("calculadora") // Important: Route must match the @Route in CalculatorView
+                )
+        );
+
+        Button goToDivisaButton = new Button("Go to Divisa", event ->
+                event.getSource().getUI().ifPresent(ui ->
+                        ui.navigate("divisa") // Important: Route must match the @Route in DivisaView
+                )
+        );
+
         // Styling (Optional - you can use CSS if you prefer)
         goToAhorcadoButton.addThemeName("primary");
         goToTresEnRayaButton.addThemeName("primary");
@@ -54,6 +72,7 @@ public class HubView extends VerticalLayout {
 
         // Layout
         setAlignItems(Alignment.CENTER);
-        add(title, goToAhorcadoButton, goToTresEnRayaButton, goToTaskViewButton, goToNameButton, goToRegisterButton);
+        add(title, goToAhorcadoButton, goToTresEnRayaButton, goToTaskViewButton, goToNameButton, goToRegisterButton,
+                goToListaCompraButton, goToCalculatorButton, goToDivisaButton);
     }
 }
