@@ -40,6 +40,12 @@ public class HubView extends VerticalLayout {
                 )
         );
 
+        Button goToRegisterButton = new Button("Go to Register", event ->
+                event.getSource().getUI().ifPresent(ui ->
+                        ui.navigate("register") // Important: Route must match the @Route in RegisterView
+                )
+        );
+
         // Styling (Optional - you can use CSS if you prefer)
         goToAhorcadoButton.addThemeName("primary");
         goToTresEnRayaButton.addThemeName("primary");
@@ -48,6 +54,6 @@ public class HubView extends VerticalLayout {
 
         // Layout
         setAlignItems(Alignment.CENTER);
-        add(title, goToAhorcadoButton, goToTresEnRayaButton, goToTaskViewButton, goToNameButton);
+        add(title, goToAhorcadoButton, goToTresEnRayaButton, goToTaskViewButton, goToNameButton, goToRegisterButton);
     }
 }
