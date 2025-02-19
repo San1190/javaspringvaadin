@@ -21,7 +21,7 @@ import javax.swing.ButtonModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-@Route("")
+@Route("task")
 @PageTitle("Task Manager")
 @CssImport("./styles/task-view.css") // Import custom CSS
 public class TaskView extends VerticalLayout {

@@ -8,11 +8,11 @@ import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.component.notification.Notification;
 
-@Route("main") // Maps this view to the root URL ("/")
+@Route("nombre") // Maps this view to the root URL ("/")
 @PageTitle("My First Vaadin App") // Sets the browser tab title
-public class MainView extends VerticalLayout {
+public class NombreView extends VerticalLayout {
 
-    public MainView() {
+    public NombreView() {
         // Create components
         TextField textField = new TextField("Your Name"); // Label added
         Button button = new Button("Say Hello");
