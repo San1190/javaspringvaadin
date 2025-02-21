@@ -64,6 +64,12 @@ public class HubView extends VerticalLayout {
                 )
         );
 
+        Button goToPrueButton = new Button("Go to Prueba", event ->
+                event.getSource().getUI().ifPresent(ui ->
+                        ui.navigate("prueba") // Important: Route must match the @Route in PruebaView
+                )
+        );
+
         // Styling (Optional - you can use CSS if you prefer)
         goToAhorcadoButton.addThemeName("primary");
         goToTresEnRayaButton.addThemeName("primary");
@@ -73,6 +79,6 @@ public class HubView extends VerticalLayout {
         // Layout
         setAlignItems(Alignment.CENTER);
         add(title, goToAhorcadoButton, goToTresEnRayaButton, goToTaskViewButton, goToNameButton, goToRegisterButton,
-                goToListaCompraButton, goToCalculatorButton, goToDivisaButton);
+                goToListaCompraButton, goToCalculatorButton, goToDivisaButton, goToPrueButton);
     }
 }
