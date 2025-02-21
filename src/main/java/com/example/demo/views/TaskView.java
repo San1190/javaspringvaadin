@@ -16,14 +16,12 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.dom.Style;  // Import Style
 import com.vaadin.flow.component.dependency.CssImport; // Import CssImport
 import com.vaadin.flow.router.RouterLink;
-
+import com.vaadin.flow.component.Key;
 import javax.swing.ButtonModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 @Route("task")
 @PageTitle("Task Manager")
-@CssImport("./styles/task-view.css") // Import custom CSS
 public class TaskView extends VerticalLayout {
 
     private final TaskService taskService;
@@ -72,24 +70,34 @@ public class TaskView extends VerticalLayout {
             }
         });
 
+        // **Nuevo: Agregar evento de tecla Enter al campo de texto**
+        taskDescription.addKeyDownListener(Key.ENTER, event -> {
+            if (!taskDescription.getValue().isEmpty()) {
+                taskService.addTask(taskDescription.getValue());
+                taskDescription.clear();  // Limpiar el campo de texto después de agregar la tarea
+                refreshTasks();  // Actualizar la lista de tareas
+            }
+        });
+
         // Navigation Button Styling
         Button goToMainButton = new Button("Go to Main View");
-        goToMainButton.addClickListener(event ->
-                goToMainButton.getUI().ifPresent(ui ->
-                        ui.navigate("main") // Navigate to the "main" route
-                )
+        goToMainButton.addClickListener(event -> 
+            goToMainButton.getUI().ifPresent(ui -> 
+                ui.navigate("main") // Navigate to the "main" route
+            )
         );
         goToMainButton.addThemeName("secondary"); // A less prominent theme
         goToMainButton.getStyle().set("margin-top", "var(--lumo-space-2)");
 
         Button goToTikTakToeButton = new Button("Go to Tik Tak Toe");
-        goToTikTakToeButton.addClickListener(event ->
-                goToTikTakToeButton.getUI().ifPresent(ui ->
-                        ui.navigate("tresenraya") // Navigate to the "tresenraya" route
-                )
+        goToTikTakToeButton.addClickListener(event -> 
+            goToTikTakToeButton.getUI().ifPresent(ui -> 
+                ui.navigate("tresenraya") // Navigate to the "tresenraya" route
+            )
         );
         goToTikTakToeButton.addThemeName("secondary"); // A less prominent theme
         goToTikTakToeButton.getStyle().set("margin-top", "var(--lumo-space-l)");
+
         // Layout using Div for a bit more structure
         Div content = new Div();
         content.setWidthFull(); // Make the content fill the available space

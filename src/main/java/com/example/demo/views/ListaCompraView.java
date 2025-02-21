@@ -3,6 +3,8 @@ package com.example.demo.views;
 import com.example.demo.model.Articulo;
 import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.checkbox.Checkbox;
+import com.vaadin.flow.component.dependency.CssImport;
+import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -18,6 +20,7 @@ import java.util.List;
 
 @Route("lista-compra")
 @PageTitle("Lista de Compras")
+@StyleSheet("comprastyle.css")
 public class ListaCompraView extends VerticalLayout {
 
     private List<Articulo> listaArticulos = new ArrayList<>();

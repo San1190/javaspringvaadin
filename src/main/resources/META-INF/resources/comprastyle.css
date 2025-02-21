@@ -1,0 +1,154 @@
+/* Estilos generales */
+body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f4f6;
+    color: #333;
+}
+
+/* Contenedor principal */
+.lista-compra-view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* Contenedor de la lista de artículos */
+.lista-articulos-layout {
+    width: 400px;
+    max-width: 100%;
+    background-color: #fff;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.lista-articulos-layout:hover {
+    transform: scale(1.02);
+}
+
+/* Añadir nuevo artículo */
+.anadir-layout {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+/* Campo de texto para el nuevo artículo */
+.nuevo-articulo-input {
+    width: 250px;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    margin-right: 10px;
+    transition: border-color 0.3s ease;
+}
+
+.nuevo-articulo-input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+/* Botón de agregar */
+.agregar-button {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.agregar-button:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+/* Estilo de cada artículo en la lista */
+.articulo-layout {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f9f9f9;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.articulo-layout:hover {
+    transform: scale(1.02);
+}
+
+/* Estilo del checkbox */
+.checkbox-articulo {
+    margin-right: 10px;
+}
+
+/* Nombre del artículo */
+.articulo-nombre {
+    flex-grow: 1;
+    font-size: 1rem;
+    color: #333;
+    text-align: left;
+}
+
+/* Botón de eliminar */
+.eliminar-button {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.eliminar-button:hover {
+    background-color: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Animación al agregar un artículo */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.articulo-layout {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Animación de botón de agregar */
+.agregar-button {
+    animation: buttonPulse 1.5s infinite alternate;
+}
+
+@keyframes buttonPulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 10px rgba(40, 167, 69, 0.5);
+    }
+    100% {
+        transform: scale(1.05);
+        box-shadow: 0 0 20px rgba(40, 167, 69, 0.8);
+    }
+}

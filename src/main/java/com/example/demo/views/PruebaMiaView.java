@@ -1,66 +1,63 @@
 package com.example.demo.views;
 
-import com.example.demo.model.Articulo;
 import com.vaadin.flow.component.button.Button;
-import com.vaadin.flow.component.checkbox.Checkbox;
-import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.component.textfield.TextField;
 import com.vaadin.flow.router.Route;
 import com.vaadin.flow.router.PageTitle;
-import com.vaadin.flow.dom.Style;
 import com.vaadin.flow.component.notification.Notification;
-import com.vaadin.flow.component.Key; //Import key
-
-import java.util.ArrayList;
-import java.util.List;
+import com.vaadin.flow.component.Key;
+import com.vaadin.flow.component.dependency.StyleSheet; // Import para CSS externo
 
 @Route("prueba")
-@PageTitle("Mi Prueba")
-public class PruebaMiaView extends VerticalLayout{
+@PageTitle("Inicio de Sesión")
+@StyleSheet("styles.css")
+public class PruebaMiaView extends VerticalLayout {
 
-    private Button botonInicioSesiButton;
-    private Button botonRegistroButton;
     private TextField usuarioTextField;
     private TextField contrasenaTextField;
-
+    private Button botonInicioSesiButton;
+    private Button botonRegistroButton;
 
     public PruebaMiaView() {
-        H1 title = new H1("Inicio de Sesión");
+        // Título principal
+        H1 title = new H1("Bienvenido");
+        title.addClassName("main-title"); // Clase para estilos CSS
+
+        // Campos de texto con iconos (requiere Vaadin Icon component)
         usuarioTextField = new TextField("Usuario");
+        usuarioTextField.setPlaceholder("Introduce tu nombre de usuario");
+       // usuarioTextField.setPrefixComponent(VaadinIcon.USER.create()); // Icono de usuario
+        usuarioTextField.addClassName("input-field");
+
         contrasenaTextField = new TextField("Contraseña");
+        contrasenaTextField.setPlaceholder("Introduce tu contraseña");
+        //contrasenaTextField.setPasswordField(true); // Oculta la contraseña
+        //contrasenaTextField.setPrefixComponent(VaadinIcon.LOCK.create()); // Icono de candado
+        contrasenaTextField.addClassName("input-field");
+
+        // Botones con estilos modernos y animaciones
         botonInicioSesiButton = new Button("Iniciar Sesión");
+        botonInicioSesiButton.addClassName("primary-button");
+        botonInicioSesiButton.addClickShortcut(Key.ENTER); // Permite iniciar sesión con la tecla Enter
+        botonInicioSesiButton.addClickListener(event -> {
+            Notification.show("¡Inicio de sesión exitoso! (Simulado)");
+        });
+
         botonRegistroButton = new Button("Registrarse");
+        botonRegistroButton.addClassName("secondary-button");
 
-        //Estilos y alineación básica
-        setAlignItems(Alignment.CENTER); // Alinea el contenido verticalmente al centro
-        setJustifyContentMode(JustifyContentMode.CENTER); // Alinea el contenido horizontalmente al centro
-        setBoxSizing(null); // Elimina el relleno predeterminado
-        //colores de la pagina 
-        getStyle().set("background-color", "#f0f0f0");
-        getStyle().set("color", "#333");
-        //colores de los botones
-        botonInicioSesiButton.getStyle().set("background-color", "#4CAF50");
-        botonInicioSesiButton.getStyle().set("color", "white");
-        botonInicioSesiButton.getStyle().set("border", "none");
-        botonInicioSesiButton.getStyle().set("padding", "10px 24px");
-        botonInicioSesiButton.getStyle().set("cursor", "pointer");
-        botonInicioSesiButton.getStyle().set("border-radius", "5px");
-        botonInicioSesiButton.getStyle().set("text-align", "center");
-        botonInicioSesiButton.getStyle().set("text-decoration", "none");
-        botonInicioSesiButton.getStyle().set("display", "inline-block");
-        botonInicioSesiButton.getStyle().set("font-size", "16px");
-        
+        // Estructura y diseño principal
+        VerticalLayout formLayout = new VerticalLayout(title, usuarioTextField, contrasenaTextField, botonInicioSesiButton, botonRegistroButton);
+        formLayout.addClassName("form-container"); // Contenedor para estilos CSS
+        formLayout.setAlignItems(Alignment.CENTER);
 
-
-
-
-
-
-        add(title, usuarioTextField, contrasenaTextField, botonInicioSesiButton, botonRegistroButton);
-
+        // Añade el formulario al layout principal
+        add(formLayout);
+        setAlignItems(Alignment.CENTER);
+        setJustifyContentMode(JustifyContentMode.CENTER);
+        setSizeFull(); // Ocupa toda la pantalla
+        addClassName("main-view"); // Clase para estilos CSS generales
     }
-    
 }
